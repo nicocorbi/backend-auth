@@ -29,3 +29,20 @@ npm i express
 ```
 
 3. Creamos un .gitignore
+
+## Crear servidor
+1. creamos un hola mundo
+2. Añadimos `better-sqlite3`
+3. Lo integramos en nuestro server
+```js
+// conectar a la base de datos
+const db = betterSqlite3('database.db')
+
+console.log("Directorio:", __dirname);
+//obtenemos la ruta absoluta a init.sql
+const initSqlPath = path.join(__dirname,'init.sql');
+//leemos el archivo init.sql
+const initSql = fs.readFileSync(initSqlPath,'utf8');
+//ejecutamos el contenido de init.sql
+db.exec(initSql);
+```
