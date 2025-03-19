@@ -45,4 +45,11 @@ const initSqlPath = path.join(__dirname,'init.sql');
 const initSql = fs.readFileSync(initSqlPath,'utf8');
 //ejecutamos el contenido de init.sql
 db.exec(initSql);
+// exec solo funciona para comandos que no devuelven datos
+
+// para consultas que SI devuelven datos usamos prepare
+// y luego lo ejecutamos con .all o .get(<numero>)
+const query = db.prepare(db.exec('SELECT * FROM users'));
+const users = query.all();
+console.log(users);
 ```
